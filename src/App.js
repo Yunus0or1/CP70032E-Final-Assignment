@@ -16,6 +16,7 @@ import { Register } from "./pages/Register";
 
 // components
 import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 
 const ProtectedRoute = ({ user, redirectPath = "/" }) => {
   if (!user) {
@@ -55,6 +56,7 @@ export const App = () => {
 
         <Route path="*" element={<p>404</p>} />
       </Routes>
+      <Footer />
     </>
   );
 };
