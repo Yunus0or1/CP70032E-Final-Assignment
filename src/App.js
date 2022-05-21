@@ -3,7 +3,7 @@ import "./App.css";
 
 // state
 import { useSelector } from "react-redux";
-import { selectId } from "./state/authSlice";
+import { selectUser } from "./state/authSlice";
 
 // routing
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
@@ -35,7 +35,7 @@ const ReverseProtectedRoute = ({ user, redirectPath = "/" }) => {
 };
 
 export const App = () => {
-  const user = useSelector(selectId);
+  const user = useSelector(selectUser);
 
   return (
     <>

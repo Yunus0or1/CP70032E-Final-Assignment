@@ -12,6 +12,8 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login } from "../state/authSlice";
 
 const theme = createTheme();
 
@@ -20,34 +22,41 @@ export const Login = () => {
   const [alert, setAlert] = useState();
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
 
     setLoading(true);
 
+    // access form information
+    // const data = new FormData(event.currentTarget);
+    // console.log({
+    //     email: data.get("email"),
+    //     password: data.get("password"),
+    //   });
+
     // mimic API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
+    const user = {
+      id: "248",
+      name: "Bobby",
+      email: "bobb@mail.com",
+      password: "ok",
+    };
 
     setLoading(false);
 
     const successful = true;
     if (successful) {
-      // upon success, clear the form and head to home
+      // upon success, set id, clear the form and head to home
+      dispatch(login(user));
       event.target.reset();
       navigate("/");
     } else {
       setAlert({ type: "error", message: "Something went wrong." });
     }
-
-    // // access form information
-    // console.log({
-    //     email: data.get("email"),
-    //     password: data.get("password"),
-    //   });
   };
-
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -113,7 +122,7 @@ export const Login = () => {
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link
-                  href="#"
+                  sx={{ cursor: "pointer" }}
                   variant="body2"
                   onClick={() => navigate("/register")}
                 >

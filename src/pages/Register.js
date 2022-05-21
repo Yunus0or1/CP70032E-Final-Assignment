@@ -127,7 +127,7 @@ export const Register = () => {
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link
-                  href="#"
+                  sx={{ cursor: "pointer" }}
                   variant="body2"
                   onClick={() => navigate("/login")}
                 >
