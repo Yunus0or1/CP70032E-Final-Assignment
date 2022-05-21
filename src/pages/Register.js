@@ -11,12 +11,15 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 export const Register = () => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState();
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -29,7 +32,7 @@ export const Register = () => {
 
     setLoading(false);
 
-    const successful = false;
+    const successful = true;
     if (successful) {
       // upon success, clear the form
       event.target.reset();
@@ -68,7 +71,7 @@ export const Register = () => {
             <PersonAdd />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Register
           </Typography>
           <Box
             component="form"
@@ -119,12 +122,16 @@ export const Register = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Register
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
-                  Already have an account? Sign in
+                <Link
+                  href="#"
+                  variant="body2"
+                  onClick={() => navigate("/login")}
+                >
+                  Already have an account? Login
                 </Link>
               </Grid>
             </Grid>
