@@ -1,5 +1,5 @@
 import React from "react";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 
@@ -18,7 +18,7 @@ export const Footer = (props) => {
       >
         {"Copyright © "}
         <Link color="inherit" href="#">
-          TheatreTicketsUK
+          WestTheatre
         </Link>{" "}
         {new Date().getFullYear()}
         {"."}

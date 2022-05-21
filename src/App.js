@@ -10,9 +10,9 @@ import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 
 // pages/routes
 import { Landing } from "./pages/Landing";
-import { Book } from "./pages/Book";
+import { CreateEvent } from "./pages/CreateEvent";
+import { BookClient } from "./pages/BookClient";
 import { Login } from "./pages/Login";
-import { Register } from "./pages/Register";
 
 // components
 import { Header } from "./components/Header";
@@ -45,13 +45,13 @@ export const App = () => {
 
         {/* only available to logged in users */}
         <Route element={<ProtectedRoute user={user} />}>
-          <Route path="book" element={<Book />} />
+          <Route path="create-event" element={<CreateEvent />} />
+          <Route path="book-client" element={<BookClient />} />
         </Route>
 
         {/* only available to logged out users */}
         <Route element={<ReverseProtectedRoute user={user} />}>
           <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
         </Route>
 
         <Route path="*" element={<p>404</p>} />
