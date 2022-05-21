@@ -9,16 +9,16 @@ import { selectUser } from "./state/authSlice";
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 
 // pages/routes
-import { Landing } from "./pages/Landing";
+import { Dashboard } from "./pages/Dashboard";
 import { CreateEvent } from "./pages/CreateEvent";
 import { BookClient } from "./pages/BookClient";
 import { Login } from "./pages/Login";
 
 // components
-import { Header } from "./components/Header";
+import { Wrapper } from "./components/Wrapper";
 import { Footer } from "./components/Footer";
 
-const ProtectedRoute = ({ user, redirectPath = "/" }) => {
+const ProtectedRoute = ({ user, redirectPath = "/login" }) => {
   if (!user) {
     return <Navigate to={redirectPath} replace />;
   }
@@ -39,24 +39,23 @@ export const App = () => {
 
   return (
     <>
-      <Header />
-      <Routes>
-        <Route index element={<Landing />} />
+      <Wrapper>
+        <Routes>
+          {/* only available to logged in users */}
+          <Route element={<ProtectedRoute user={user} />}>
+            <Route index element={<Dashboard />} />
+            <Route path="create-event" element={<CreateEvent />} />
+            <Route path="book-client" element={<BookClient />} />
+          </Route>
 
-        {/* only available to logged in users */}
-        <Route element={<ProtectedRoute user={user} />}>
-          <Route path="create-event" element={<CreateEvent />} />
-          <Route path="book-client" element={<BookClient />} />
-        </Route>
+          {/* only available to logged out users */}
+          <Route element={<ReverseProtectedRoute user={user} />}>
+            <Route path="login" element={<Login />} />
+          </Route>
 
-        {/* only available to logged out users */}
-        <Route element={<ReverseProtectedRoute user={user} />}>
-          <Route path="login" element={<Login />} />
-        </Route>
-
-        <Route path="*" element={<p>404</p>} />
-      </Routes>
-      <Footer />
+          <Route path="*" element={<p>404</p>} />
+        </Routes>
+      </Wrapper>
     </>
   );
 };
