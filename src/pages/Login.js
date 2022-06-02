@@ -13,6 +13,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../state/authSlice";
+import AuthService from "../services/auth/index";
 
 const theme = createTheme();
 
@@ -29,31 +30,21 @@ export const Login = () => {
     setLoading(true);
 
     // access form information
-    // const data = new FormData(event.currentTarget);
-    // console.log({
-    //     email: data.get("email"),
-    //     password: data.get("password"),
-    //   });
+    const data = new FormData(event.currentTarget);
 
-    // mimic API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    const user = {
-      id: "248",
-      name: "Bobby",
-      email: "bobb@mail.com",
-      password: "ok",
-    };
+    const res = await AuthService.login({
+      email: data.get("email"),
+      password: data.get("password"),
+    });
 
-    setLoading(false);
-
-    const successful = true;
-    if (successful) {
+    if (res.status) {
       // upon success, set user, clear the form and head to home
-      dispatch(login(user));
+      dispatch(login(res.user));
       event.target.reset();
       navigate("/");
     } else {
-      setAlert({ type: "error", message: "Something went wrong." });
+      setLoading(false);
+      setAlert({ type: "error", message: res.responseMessage });
     }
   };
   return (

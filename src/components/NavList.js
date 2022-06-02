@@ -5,6 +5,7 @@ import ListItemText from "@mui/material/ListItemText";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import CreateIcon from "@mui/icons-material/Create";
 import MovieIcon from "@mui/icons-material/Movie";
+import ViewList from "@mui/icons-material/ViewList"
 import AddReactionIcon from "@mui/icons-material/AddReaction";
 import LogoutIcon from "@mui/icons-material/Logout";
 import List from "@mui/material/List";
@@ -33,20 +34,11 @@ export const NavList = () => {
           </ListItemIcon>
           <ListItemText primary="Events" />
         </ListItemButton>
-      </React.Fragment>
-      <Divider sx={{ my: 1 }} />
-      <React.Fragment>
-        <ListItemButton onClick={() => navigate("/create-event")}>
+        <ListItemButton onClick={() => navigate("/events")}>
           <ListItemIcon>
-            <CreateIcon />
+            <ViewList />
           </ListItemIcon>
-          <ListItemText primary="Create Event" />
-        </ListItemButton>
-        <ListItemButton onClick={() => navigate("/book-client")}>
-          <ListItemIcon>
-            <AddReactionIcon />
-          </ListItemIcon>
-          <ListItemText primary="Book Client" />
+          <ListItemText primary="Bookings" />
         </ListItemButton>
       </React.Fragment>
       <Divider sx={{ my: 1 }} />
