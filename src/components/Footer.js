@@ -17,9 +17,6 @@ export const Footer = (props) => {
         {...props}
       >
         {"Copyright © "}
-        <Link color="inherit" href="#">
-          WestTheatre
-        </Link>{" "}
         {new Date().getFullYear()}
         {"."}
       </Typography>

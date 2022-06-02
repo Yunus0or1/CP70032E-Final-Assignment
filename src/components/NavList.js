@@ -27,7 +27,7 @@ export const NavList = () => {
           </ListItemIcon>
           <ListItemText primary="Dashboard" />
         </ListItemButton>
-        <ListItemButton onClick={() => navigate("/")}>
+        <ListItemButton onClick={() => navigate("/events")}>
           <ListItemIcon>
             <MovieIcon />
           </ListItemIcon>

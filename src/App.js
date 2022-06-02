@@ -13,10 +13,10 @@ import { Dashboard } from "./pages/Dashboard";
 import { CreateEvent } from "./pages/CreateEvent";
 import { BookClient } from "./pages/BookClient";
 import { Login } from "./pages/Login";
+import { Events } from "./pages/Events";
 
 // components
 import { Wrapper } from "./components/Wrapper";
-import { Footer } from "./components/Footer";
 
 const ProtectedRoute = ({ user, redirectPath = "/login" }) => {
   if (!user) {
@@ -46,6 +46,7 @@ export const App = () => {
             <Route index element={<Dashboard />} />
             <Route path="create-event" element={<CreateEvent />} />
             <Route path="book-client" element={<BookClient />} />
+            <Route path="events" element={<Events />} />
           </Route>
 
           {/* only available to logged out users */}

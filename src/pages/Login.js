@@ -48,7 +48,7 @@ export const Login = () => {
 
     const successful = true;
     if (successful) {
-      // upon success, set id, clear the form and head to home
+      // upon success, set user, clear the form and head to home
       dispatch(login(user));
       event.target.reset();
       navigate("/");

@@ -1,6 +1,6 @@
 import React from "react";
+import { Empty } from "../components/Empty";
 
 export const BookClient = () => {
-
-    return <p>BookClient</p>
-}
+  return <Empty text="Book Client" />;
+};

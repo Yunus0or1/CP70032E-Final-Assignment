@@ -59,12 +59,12 @@ export const CreateEvent = (props) => {
 
   const validate = async () => {
     // there needs to be a name
-    if (name.trim().length == 0) {
+    if (name.trim().length === 0) {
       window.alert("Name of the event needs to have at least one character.");
       return;
     }
     // there needs to be at least one theatre
-    if (Object.keys(venues).length == 0) {
+    if (Object.keys(venues).length === 0) {
       window.alert("You need to select at least one venue.");
       return;
     }
