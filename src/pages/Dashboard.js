@@ -1,6 +1,10 @@
 import React from "react";
-import { Empty } from "../components/Empty";
+import { Typography } from "@mui/material";
 
 export const Dashboard = () => {
-  return <Empty text="Dashboard" />;
+  return (
+    <>
+      <Typography variant="h4">Dashboard</Typography>
+    </>
+  );
 };

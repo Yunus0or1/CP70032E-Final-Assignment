@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+import EventsService from "../../services/events/index";
 
 // stages
 import { EventDetails } from "./EventDetails";
@@ -57,6 +58,10 @@ export const CreateEvent = (props) => {
   const dateTime = useSelector(selectDateTime);
   const all = useSelector(selectAll);
 
+  useEffect(() => {
+    dispatch(reset());
+  }, []);
+
   const validate = async () => {
     // there needs to be a name
     if (name.trim().length === 0) {
@@ -76,21 +81,36 @@ export const CreateEvent = (props) => {
       return;
     }
 
-    // minimicing waiting for server response
-    setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setLoading(false);
+    handleConfirm();
+  };
 
-    const successful = true;
-    if (successful) {
+  const handleConfirm = async () => {
+    setLoading(true);
+
+    const selectedVenues = [];
+    Object.values(all.venues).map((ven) => {
+      selectedVenues.push(ven);
+    });
+
+    const res = await EventsService.createEvent({
+      name: all.name,
+      dateTime: all.dateTime,
+      duration: all.duration.toString(),
+      venues: selectedVenues,
+      price: all.price
+    });
+
+    if (res.status) {
+      // store cache to use in final success feedback to user before resetting fields
+      setCache(all);
       // move onto final step
       setActiveStep(activeStep + 1);
-      // store cache to use in final success feedback to user before resetting fields
-      setCache(all); // shit solution i know but in a rush and it works
+      setLoading(false);
       // clear the current event fields
       dispatch(reset());
     } else {
-      window.alert("unsuccessful server response");
+      window.alert(res.responseMessage);
+      setLoading(false);
     }
   };
 
@@ -145,17 +165,22 @@ export const CreateEvent = (props) => {
                 </Typography>
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                   <Button
-                    onClick={() => setActiveStep(0)}
+                    onClick={() => {
+                      // go back to first step in the form
+                      setActiveStep(0);
+                      // clear the current event fields
+                      dispatch(reset());
+                    }}
                     sx={{ mt: 3, ml: 1 }}
                   >
                     Create Another
                   </Button>
                   <Button
                     variant="contained"
-                    onClick={() => navigate("/")}
+                    onClick={() => navigate("/events")}
                     sx={{ mt: 3, ml: 1 }}
                   >
-                    Back home
+                    Finish
                   </Button>
                 </Box>
               </React.Fragment>

@@ -14,11 +14,12 @@ import {
   selectDateTime,
   selectDuration,
   selectVenues,
+  selectPrice,
 } from "../../state/createEventSlice";
 
 export const ConfirmCreation = () => {
   const selectedVenues = useSelector(selectVenues);
-  
+
   return (
     <>
       <Grid container spacing={2}>
@@ -28,7 +29,6 @@ export const ConfirmCreation = () => {
           </Typography>
         </Grid>
         <Grid item xs={12}>
-          {/* <Item elevation={8}> */}
           <Typography
             variant="h5"
             sx={{
@@ -46,7 +46,6 @@ export const ConfirmCreation = () => {
           >
             {useSelector(selectName)}
           </Typography>
-          {/* </Item> */}
         </Grid>
         <Grid item xs={12} sm={6}>
           <List disablePadding>
@@ -61,6 +60,11 @@ export const ConfirmCreation = () => {
                 secondary={"For " + useSelector(selectDuration) + " minutes"}
               />
             </ListItem>
+            <ListItem sx={{ py: 1, px: 0 }}>
+              <ListItemText
+                primary={"Ticket Price: £" + useSelector(selectPrice).toFixed(2)}
+              />
+            </ListItem>
           </List>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -73,7 +77,6 @@ export const ConfirmCreation = () => {
                     primary={venue.title}
                     secondary={venue.location}
                   />
-                  {/* <Typography variant="body2">{venue.title}</Typography> */}
                 </ListItem>
               );
             })}

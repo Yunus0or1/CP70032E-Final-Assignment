@@ -5,9 +5,10 @@ const initialState = {
   dateTime: new Date().toISOString(),
   duration: 60,
   venues: {},
+  price: 13,
 };
 
-export const createEventSlide = createSlice({
+export const createEventSlice = createSlice({
   name: "createEvent",
   initialState,
 
@@ -19,6 +20,7 @@ export const createEventSlide = createSlice({
       state.dateTime = new Date().toISOString();
       state.duration = 60;
       state.venues = {};
+      state.price = 13;
     },
     updateName: (state, action) => {
       state.name = action.payload;
@@ -41,6 +43,9 @@ export const createEventSlide = createSlice({
       delete _venues[action.payload];
       state.venues = _venues;
     },
+    updatePrice: (state, action) => {
+      state.price = parseFloat(action.payload);
+    },
   },
 });
 
@@ -51,7 +56,8 @@ export const {
   updateDuration,
   addVenue,
   deleteVenue,
-} = createEventSlide.actions;
+  updatePrice,
+} = createEventSlice.actions;
 
 export const selectAll = (state) => state.createEvent;
 export const selectName = (state) => state.createEvent.name;
@@ -63,5 +69,6 @@ export const selectDateTime = (state) => {
 };
 export const selectDuration = (state) => state.createEvent.duration;
 export const selectVenues = (state) => state.createEvent.venues;
+export const selectPrice = (state) => state.createEvent.price;
 
-export default createEventSlide.reducer;
+export default createEventSlice.reducer;

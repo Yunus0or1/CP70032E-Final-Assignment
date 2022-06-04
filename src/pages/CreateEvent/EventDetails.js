@@ -1,24 +1,23 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Slider from "@mui/material/Slider";
-import Divider from "@mui/material/Divider";
-import Chip from "@mui/material/Chip";
 import { useSelector, useDispatch } from "react-redux";
 import {
   updateName,
   updateDateTime,
   updateDuration,
+  updatePrice,
   selectName,
   selectDateTime,
   selectDuration,
-} from "../../state/createEventSlice"
+  selectPrice,
+} from "../../state/createEventSlice";
 
 const theme = createTheme();
 
@@ -40,12 +39,7 @@ export const EventDetails = () => {
             onChange={(e) => dispatch(updateName(e.target.value))}
           />
         </Grid>
-        <Grid item xs={12}>
-          <Divider sx={{ mt: 3 }}>
-            <Chip label="Event Start" />
-          </Divider>
-        </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} sx={{ mt: 3 }}>
           <Grid container justifyContent="space-between">
             <Grid item>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -55,7 +49,7 @@ export const EventDetails = () => {
                   disableMaskedInput
                   value={new Date(useSelector(selectDateTime))}
                   onChange={(newValue) => {
-                    dispatch(updateDateTime(newValue.toISOString()))
+                    dispatch(updateDateTime(newValue.toISOString()));
                   }}
                   renderInput={(params) => <TextField {...params} />}
                 />
@@ -69,30 +63,35 @@ export const EventDetails = () => {
                   disableMaskedInput
                   value={new Date(useSelector(selectDateTime))}
                   onChange={(newValue) => {
-                    dispatch(updateDateTime(newValue.toISOString()))
+                    dispatch(updateDateTime(newValue.toISOString()));
                   }}
                   renderInput={(params) => <TextField {...params} />}
                 />
               </LocalizationProvider>
             </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <Divider sx={{ mt: 5 }}>
-              <Chip label="Event Duration" />
-            </Divider>
-          </Grid>
-          <Grid item xs={12}>
-            <Box sx={{ mb: 5 }} />
-            <Slider
-              aria-label="Duration"
+          <Grid item xs={12} sx={{ mt: 5, display: "flex", gap: 4 }}>
+            <TextField
+              type="number"
+              value={useSelector(selectPrice)}
+              onChange={(e) => dispatch(updatePrice(e.target.value))}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">£</InputAdornment>
+                ),
+              }}
+            />
+            <TextField
+              type="number"
               value={useSelector(selectDuration)}
-              onChange={(e, newValue) => dispatch(updateDuration(newValue))}
-              valueLabelFormat={(duration) => <div>{duration} minutes</div>}
-              valueLabelDisplay="on"
-              step={5}
-              marks
-              min={10}
-              max={240}
+              onChange={(e) => dispatch(updateDuration(e.target.value))}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    minutes (runtime)
+                  </InputAdornment>
+                ),
+              }}
             />
           </Grid>
         </Grid>

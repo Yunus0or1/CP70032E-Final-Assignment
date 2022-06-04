@@ -7,7 +7,8 @@ export const Footer = (props) => {
   return (
     <Box
       sx={{
-        marginTop: 4,
+        mt: 4,
+        mb: 4,
       }}
     >
       <Typography
@@ -18,7 +19,6 @@ export const Footer = (props) => {
       >
         {"Copyright © "}
         {new Date().getFullYear()}
-        {"."}
       </Typography>
     </Box>
   );

@@ -11,7 +11,9 @@ import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 // pages/routes
 import { Dashboard } from "./pages/Dashboard";
 import { CreateEvent } from "./pages/CreateEvent";
+import { EditEvent } from "./pages/EditEvent";
 import { BookClient } from "./pages/BookClient";
+import { Bookings } from "./pages/Bookings";
 import { Login } from "./pages/Login";
 import { Events } from "./pages/Events";
 
@@ -44,9 +46,13 @@ export const App = () => {
           {/* only available to logged in users */}
           <Route element={<ProtectedRoute user={user} />}>
             <Route index element={<Dashboard />} />
+            {/* events */}
+            <Route index path="events" element={<Events />} />
             <Route path="create-event" element={<CreateEvent />} />
+            <Route path="edit-event" element={<EditEvent />} />
+            {/* bookings */}
             <Route path="book-client" element={<BookClient />} />
-            <Route path="events" element={<Events />} />
+            <Route path="bookings" element={<Bookings />} />
           </Route>
 
           {/* only available to logged out users */}

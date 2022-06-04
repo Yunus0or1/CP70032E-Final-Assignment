@@ -26,7 +26,7 @@ const api = async ({ method, data }) => {
       } else {
         return {
           status: res.data.status,
-          responseMessage: res.data.responseMessage,
+          responseMessage: res.data.responseMessage || res.data.message,
         };
       }
     } catch (error) {
