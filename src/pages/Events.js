@@ -22,7 +22,6 @@ export const Events = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClick = (event) => setAnchorEl(event.currentTarget);
   const handleClose = () => setAnchorEl(null);
-
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
@@ -80,7 +79,7 @@ export const Events = () => {
       >
         <Box>
           <Typography variant="h4">Events</Typography>
-          <Typography>Booked Upcoming Events, Most Recent First</Typography>
+          <Typography>Upcoming events, most recent first.</Typography>
         </Box>
         <Button
           variant="contained"
@@ -92,7 +91,6 @@ export const Events = () => {
       </Box>
       {data.map((event) => {
         const dateTime = new Date(event.eventTime);
-
         const totalAvailable = calculateAvailableSeats(event.venue.seats);
         const booked = event.venue.totalSeats - totalAvailable;
 

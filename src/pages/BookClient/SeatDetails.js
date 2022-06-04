@@ -8,7 +8,7 @@ import {
   Alert,
 } from "@mui/material";
 import React, { useState } from "react";
-import EventsService from "../../services/events/index";
+import BookingsService from "../../services/bookings/index";
 
 // state
 import { useSelector } from "react-redux";
@@ -45,7 +45,7 @@ export const SeatDetails = () => {
     console.log(selectedSeatList);
 
     // make server request
-    const res = await EventsService.checkSeats({
+    const res = await BookingsService.checkSeats({
       serverEventId: selectedEvent.id,
       serverCreatedTime: selectedEvent.createdTime,
       seats: selectedSeatList,

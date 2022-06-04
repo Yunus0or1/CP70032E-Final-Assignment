@@ -15,7 +15,7 @@ import DoneIcon from "@mui/icons-material/Done";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import { useLocation } from "react-router-dom";
 import { Loading } from "../../components/Loading";
-import EventsService from "../../services/events/index";
+import BookingsService from "../../services/bookings/index";
 import { useNavigate } from "react-router-dom";
 
 // state
@@ -115,7 +115,7 @@ export const BookClient = () => {
     const { name, event, seatList, snacksList } = all.bookClient;
 
     // make server request
-    const checkRes = await EventsService.checkSeats({
+    const checkRes = await BookingsService.checkSeats({
       serverEventId: event.id,
       serverCreatedTime: event.createdTime,
       seats: seatList,
@@ -130,7 +130,7 @@ export const BookClient = () => {
       setSnackbarOpen(false);
     } else {
       const total = snacksSubtotal + event.eventPrice * seatList.length;
-      const res = await EventsService.bookClient({
+      const res = await BookingsService.bookClient({
         eventId: event.id,
         // bookingId, // no bookingId since this is initial booking
         createdTime: event.createdTime,
@@ -159,7 +159,7 @@ export const BookClient = () => {
 
     const { name, event, seatList, snacksList } = all.bookClient;
     const total = snacksSubtotal + event.eventPrice * seatList.length;
-    const res = await EventsService.bookClient({
+    const res = await BookingsService.bookClient({
       eventId: event.id,
       bookingId: bookingId, // initial booking was done so providing it to reference the initial booking
       createdTime: event.createdTime,
