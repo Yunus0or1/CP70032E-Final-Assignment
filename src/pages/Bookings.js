@@ -111,7 +111,7 @@ export const Bookings = () => {
         <Box>
           <Typography variant="h4">Bookings</Typography>
           <Typography>
-            Search by refernece or name for results, most recent first.
+            Search by reference or name for results, most recent first.
           </Typography>
         </Box>
         <Paper

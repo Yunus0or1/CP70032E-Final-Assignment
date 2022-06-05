@@ -1,7 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Container from "@mui/material/Container";
 import LinearProgress from "@mui/material/LinearProgress";
-import { Typography, Paper, Box, Button, Popover } from "@mui/material";
+import {
+  Typography,
+  Paper,
+  Box,
+  Button,
+  Popover,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+  Grid,
+} from "@mui/material";
 import EventsService from "../services/events/index";
 import { useNavigate } from "react-router-dom";
 
@@ -10,9 +21,6 @@ import { calculateAvailableSeats } from "../utility/calculateAvailableSeats";
 
 export const Events = () => {
   const navigate = useNavigate();
-
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
 
   useEffect(() => {
     handleFetchData();
@@ -24,6 +32,34 @@ export const Events = () => {
   const handleClose = () => setAnchorEl(null);
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
+
+  // filtering through events, function for dropdown
+  const [venueList, setVenueList] = React.useState([]);
+  const [selectedVenue, setSelectedVenue] = React.useState("");
+
+  const [loading, setLoading] = useState(true);
+  const [allData, setAllData] = useState([]);
+  const [data, setData] = useState([]);
+
+  const handleSelectVenueChange = (event) => {
+    const newSelected = event.target.value;
+    setSelectedVenue(newSelected);
+
+    setData(
+      allData.filter((event) => {
+        return event.venue.identifierTitle == newSelected;
+      })
+    );
+  };
+
+  const handleClear = () => {
+    setSelectedVenue("");
+    setData([]);
+  };
+
+  const getEvents = () => {
+    return data.length === 0 ? allData : data;
+  };
 
   const handleFetchData = async () => {
     const res = await EventsService.eventsList();
@@ -46,7 +82,24 @@ export const Events = () => {
       );
 
       // loading data from the server into the data hook variable
-      setData(eventList);
+      setAllData(eventList);
+
+      // getting all venues then removing duplicates
+      const allVenue = eventList.map((event) => {
+        return {
+          identifierTitle: event.venue.identifierTitle,
+          location: event.venue.location,
+          title: event.venue.title,
+        };
+      });
+      const uniqueVenues = [
+        ...new Map(
+          allVenue.map((item) => [item["identifierTitle"], item])
+        ).values(),
+      ];
+
+      setVenueList(uniqueVenues);
+
       setLoading(false);
     } else {
       alert(res.responseMessage);
@@ -73,7 +126,7 @@ export const Events = () => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          mb: 4,
+          mb: 3,
           alignItems: "center",
         }}
       >
@@ -89,7 +142,45 @@ export const Events = () => {
           Create
         </Button>
       </Box>
-      {data.map((event) => {
+      <Paper
+        variant="outlined"
+        sx={{ display: "flex", flexDirection: "column", p: 2, mb: 3 }}
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={8} md={10.5}>
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">
+                Filter Venue
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={selectedVenue}
+                label="Choose Venue"
+                onChange={handleSelectVenueChange}
+              >
+                {venueList.map((venue) => {
+                  return (
+                    <MenuItem value={venue.identifierTitle}>
+                      {venue.title}, {venue.location}
+                    </MenuItem>
+                  );
+                })}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={4} md={1.5}>
+            <Button
+              variant="text"
+              sx={{ width: "100%", height: "100%" }}
+              onClick={handleClear}
+            >
+              Clear
+            </Button>
+          </Grid>
+        </Grid>
+      </Paper>
+      {getEvents().map((event) => {
         const dateTime = new Date(event.eventTime);
         const totalAvailable = calculateAvailableSeats(event.venue.seats);
         const booked = event.venue.totalSeats - totalAvailable;
@@ -150,9 +241,9 @@ export const Events = () => {
                 color="error"
                 onClick={(e) => {
                   if (booked === 0) {
-                    handleClick(e)
+                    handleClick(e);
                   } else {
-                    alert("Unable to delete an event with bookings.")
+                    alert("Unable to delete an event with bookings.");
                   }
                 }}
               >
