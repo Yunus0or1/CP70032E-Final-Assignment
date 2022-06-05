@@ -17,7 +17,8 @@ export const Footer = (props) => {
         align="center"
         {...props}
       >
-        {"Copyright © "}
+        WestTheatre
+        {" Copyright © "}
         {new Date().getFullYear()}
       </Typography>
     </Box>

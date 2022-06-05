@@ -19,8 +19,12 @@ import { useNavigate } from "react-router-dom";
 import { Loading } from "../components/Loading";
 import { calculateAvailableSeats } from "../utility/calculateAvailableSeats";
 
+import { useSelector } from "react-redux";
+import { selectUser } from "../state/authSlice";
+
 export const Events = () => {
   const navigate = useNavigate();
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     handleFetchData();
@@ -135,6 +139,7 @@ export const Events = () => {
           <Typography>Upcoming events, most recent first.</Typography>
         </Box>
         <Button
+          disabled={!(user.userType === "Manager")}
           variant="contained"
           onClick={() => navigate("/create-event")}
           sx={{ height: "100%" }}
@@ -230,12 +235,14 @@ export const Events = () => {
                 Book
               </Button>
               <Button
+                disabled={!(user.userType === "Manager")}
                 variant="text"
                 onClick={() => navigate("/edit-event", { state: { event } })}
               >
                 Edit
               </Button>
               <Button
+                disabled={!(user.userType === "Manager")}
                 aria-describedby={id}
                 variant="text"
                 color="error"

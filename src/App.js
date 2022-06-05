@@ -28,6 +28,14 @@ const ProtectedRoute = ({ user, redirectPath = "/login" }) => {
   return <Outlet />;
 };
 
+const ManagerProtectedRoute = ({ user, redirectPath = "/" }) => {
+  if (user.userType !== "Manager") {
+    return <Navigate to={redirectPath} replace />;
+  }
+
+  return <Outlet />;
+};
+
 const ReverseProtectedRoute = ({ user, redirectPath = "/" }) => {
   if (user) {
     return <Navigate to={redirectPath} replace />;
@@ -48,8 +56,10 @@ export const App = () => {
             <Route index element={<Dashboard />} />
             {/* events */}
             <Route index path="events" element={<Events />} />
-            <Route path="create-event" element={<CreateEvent />} />
-            <Route path="edit-event" element={<EditEvent />} />
+            <Route element={<ManagerProtectedRoute user={user} />}>
+              <Route path="create-event" element={<CreateEvent />} />
+              <Route path="edit-event" element={<EditEvent />} />
+            </Route>
             {/* bookings */}
             <Route path="book-client" element={<BookClient />} />
             <Route path="bookings" element={<Bookings />} />
@@ -60,7 +70,21 @@ export const App = () => {
             <Route path="login" element={<Login />} />
           </Route>
 
-          <Route path="*" element={<p>404</p>} />
+          <Route
+            path="*"
+            element={
+              <div
+                style={{
+                  height: "85%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <b>404, Page Not Found</b>
+              </div>
+            }
+          />
         </Routes>
       </Wrapper>
     </>

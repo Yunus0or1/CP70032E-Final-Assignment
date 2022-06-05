@@ -38,10 +38,16 @@ export const Login = () => {
     });
 
     if (res.status) {
-      // upon success, set user, clear the form and head to home
-      dispatch(login(res.user));
-      event.target.reset();
-      navigate("/");
+      // check if the user is either Staff or Manager
+      if (res.user.userType === "Staff" || res.user.userType === "Manager") {
+        // upon success, set user, clear the form and head to home
+        dispatch(login(res.user));
+        event.target.reset();
+        navigate("/");
+      } else {
+        setLoading(false);
+        setAlert({ type: "error", message: "You are not authorized to use admin panel." });
+      }
     } else {
       setLoading(false);
       setAlert({ type: "error", message: res.responseMessage });
@@ -57,9 +63,6 @@ export const Login = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            // setting opacity and ignoring mouse events during loading
-            opacity: loading ? 0.5 : 1,
-            pointerEvents: loading ? "none" : "auto",
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
@@ -80,6 +83,7 @@ export const Login = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  disabled={loading}
                   required
                   fullWidth
                   id="email"
@@ -91,6 +95,7 @@ export const Login = () => {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  disabled={loading}
                   required
                   fullWidth
                   name="password"
@@ -102,6 +107,7 @@ export const Login = () => {
               </Grid>
             </Grid>
             <Button
+              disabled={loading}
               type="submit"
               fullWidth
               variant="contained"
