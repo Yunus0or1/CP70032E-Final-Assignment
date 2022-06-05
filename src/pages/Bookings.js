@@ -77,6 +77,16 @@ export const Bookings = () => {
   };
 
   const handleAction = async (booking, newStatus) => {
+    if (newStatus == "CANCELLED") {
+      const minusOne = new Date(booking.eventTime);
+      minusOne.setDate(minusOne.getDate() - 1);
+
+      if (minusOne < new Date()) {
+        window.alert("Cannot cancel with less than 24 hour until the event.")
+        return;
+      }
+    }
+
     setLoading(true);
 
     const res = await BookingsService.bookClient({
@@ -166,6 +176,11 @@ export const Bookings = () => {
           </Box>
         ) : (
           results.map((result) => {
+            const minusOne = new Date(result.eventTime);
+            minusOne.setDate(minusOne.getDate() - 1);
+
+            const cannotCancel = minusOne < new Date();
+
             return (
               <Paper
                 variant="outlined"
@@ -236,7 +251,7 @@ export const Bookings = () => {
                   </Button>
 
                   <Button
-                    disabled={result.bookingStatus == "CANCELLED"}
+                    disabled={result.bookingStatus == "CANCELLED" || cannotCancel}
                     variant="contained"
                     color="error"
                     onClick={() => handleAction(result, "CANCELLED")}

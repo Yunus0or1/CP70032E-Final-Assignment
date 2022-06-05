@@ -30,13 +30,6 @@ export const Events = () => {
     handleFetchData();
   }, []);
 
-  // popover for confirming delete
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClick = (event) => setAnchorEl(event.currentTarget);
-  const handleClose = () => setAnchorEl(null);
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
-
   // filtering through events, function for dropdown
   const [venueList, setVenueList] = React.useState([]);
   const [selectedVenue, setSelectedVenue] = React.useState("");
@@ -112,7 +105,6 @@ export const Events = () => {
 
   const handleDelete = async (event) => {
     setLoading(true);
-    handleClose();
 
     await EventsService.deleteEvent({
       serverEventId: event.id,
@@ -243,12 +235,11 @@ export const Events = () => {
               </Button>
               <Button
                 disabled={!(user.userType === "Manager")}
-                aria-describedby={id}
                 variant="text"
                 color="error"
                 onClick={(e) => {
                   if (booked === 0) {
-                    handleClick(e);
+                    handleDelete(event)
                   } else {
                     alert("Unable to delete an event with bookings.");
                   }
@@ -256,41 +247,6 @@ export const Events = () => {
               >
                 Delete
               </Button>
-              <Popover
-                variant="outlined"
-                id={id}
-                open={open}
-                anchorEl={anchorEl}
-                onClose={handleClose}
-                anchorOrigin={{
-                  vertical: "center",
-                  horizontal: "center",
-                }}
-                transformOrigin={{
-                  vertical: "center",
-                  horizontal: "center",
-                }}
-              >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    pr: 1.6,
-                  }}
-                >
-                  <Typography sx={{ p: 2 }}>Are you sure?</Typography>
-                  <Button
-                    onClick={() => handleDelete(event)}
-                    size="small"
-                    color="error"
-                    variant="contained"
-                  >
-                    Yes
-                  </Button>
-                </Box>
-              </Popover>
             </Box>
           </Paper>
         );
