@@ -205,7 +205,7 @@ export const Events = () => {
               <Typography variant="h5">{event.movieName}</Typography>
               <Typography>{event.eventDuration} minutes</Typography>
               <Typography>
-                {event.venue.location}, {event.venue.title}
+                {event.venue.title}, {event.venue.location}
               </Typography>
               <Typography>{dateTime.toString()}</Typography>
               <Typography>

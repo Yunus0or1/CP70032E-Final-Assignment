@@ -20,13 +20,6 @@ export const Bookings = () => {
   const [name, setName] = useState("");
   const [results, setResults] = useState([]);
 
-  // popover for confirming cancellation
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClick = (event) => setAnchorEl(event.currentTarget);
-  const handleClose = () => setAnchorEl(null);
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
-
   const handleSearch = async () => {
     setInitial(false);
     setLoading(true);
@@ -84,19 +77,23 @@ export const Bookings = () => {
   };
 
   const handleAction = async (booking, newStatus) => {
-    // console.warn(booking);
-    // const res = await BookingsService.bookClient({
-    //   // eventId: event.id, #TODO
-    //   // bookingId: booking.id, #TODO
-    //   createdTime: booking.createdTime,
-    //   bookingStatus: newStatus,
-    //   totalCost: booking.totalCost,
-    //   customerName: booking.customerName,
-    //   snacksList: booking.snacksList,
-    //   seatList: booking.seatList,
-    // });
-    // if successful, perform handleSearch again
-    // if not successful,
+    setLoading(true);
+
+    const res = await BookingsService.bookClient({
+      eventId: booking.eventId,
+      bookingId: booking.id,
+      createdTime: booking.createdTime,
+      bookingStatus: newStatus,
+      totalCost: booking.totalCost,
+      customerName: booking.customerName,
+      snacksList: booking.snacksList,
+      seatList: booking.seatList,
+    });
+    if (res.status) {
+      handleSearch();
+    } else {
+      alert(res.responseMessage);
+    }
   };
 
   return (
@@ -194,13 +191,6 @@ export const Bookings = () => {
                         ? "Online Booking"
                         : "Phone/Counter Booking"}
                     </Typography>
-                    {result.customerId ? (
-                      <Typography>
-                        Customer ID: {result.customerId} (Online Booking Only)
-                      </Typography>
-                    ) : (
-                      <></>
-                    )}
                     <Typography>Status: {result.bookingStatus}</Typography>
                   </Box>
                   <Divider />
@@ -247,48 +237,12 @@ export const Bookings = () => {
 
                   <Button
                     disabled={result.bookingStatus == "CANCELLED"}
-                    aria-describedby={id}
                     variant="contained"
                     color="error"
-                    onClick={handleClick}
+                    onClick={() => handleAction(result, "CANCELLED")}
                   >
                     Cancel
                   </Button>
-                  <Popover
-                    variant="outlined"
-                    id={id}
-                    open={open}
-                    anchorEl={anchorEl}
-                    onClose={handleClose}
-                    anchorOrigin={{
-                      vertical: "center",
-                      horizontal: "center",
-                    }}
-                    transformOrigin={{
-                      vertical: "center",
-                      horizontal: "center",
-                    }}
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: "row",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        pr: 1.6,
-                      }}
-                    >
-                      <Typography sx={{ p: 2 }}>Are you sure?</Typography>
-                      <Button
-                        onClick={() => handleAction(result, "CANCELLED")}
-                        size="small"
-                        color="error"
-                        variant="contained"
-                      >
-                        Yes
-                      </Button>
-                    </Box>
-                  </Popover>
                 </Box>
               </Paper>
             );

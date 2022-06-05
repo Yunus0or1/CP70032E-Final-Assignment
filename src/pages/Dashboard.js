@@ -44,9 +44,13 @@ export const Dashboard = () => {
                 {user.firstName} {user.lastName}
               </b>
             </Typography>
-            <Typography>
-              You are a <b>{user.userType}</b>
-            </Typography>
+            {user.userType == "Manager" ? (
+              <Typography>
+                You are a <b>Manager</b>
+              </Typography>
+            ) : (
+              <></>
+            )}
           </Box>
           <Box sx={{ display: "flex", gap: 2 }}>
             <Button variant="contained" onClick={() => navigate("/events")}>
