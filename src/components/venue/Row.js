@@ -16,6 +16,9 @@ export const Row = ({
 }) => {
   const labelSeperation = 20;
 
+  // removing "3" instances which mark row seperation
+  row = row.filter((seat) => seat != 3);
+
   const apex = row.length / 2;
   const curveOffsets = curve
     ? row.map((_, index) => {
