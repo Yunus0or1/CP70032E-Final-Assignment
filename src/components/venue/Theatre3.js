@@ -7,7 +7,7 @@ import { orange, blue, green } from "./colors";
 export const Theatre3 = ({ seats }) => {
   return (
     <Wrapper
-      wrapperHeight={245}
+      wrapperHeight={285}
       wrapperWidth={277}
       screenTopOffset={-100}
       screenLeftOffset={15}
@@ -17,49 +17,49 @@ export const Theatre3 = ({ seats }) => {
         color={orange}
         rowKey="A"
         startingOffset={32}
-        topOffset={0}
+        topOffset={5}
       />
       <Row
         row={seats.B}
         color={orange}
         rowKey="B"
         startingOffset={16}
-        topOffset={32}
+        topOffset={42}
       />
       <Row
         row={seats.C}
         color={blue}
         rowKey="C"
         startingOffset={0}
-        topOffset={64}
+        topOffset={79}
       />
       <Row
         row={seats.D}
         color={blue}
         rowKey="D"
         startingOffset={16}
-        topOffset={96}
+        topOffset={116}
       />
       <Row
         row={seats.E}
         color={blue}
         rowKey="E"
         startingOffset={0}
-        topOffset={128}
+        topOffset={153}
       />
       <Row
         row={seats.F}
         color={blue}
         rowKey="F"
         startingOffset={16}
-        topOffset={160}
+        topOffset={190}
       />
       <Row
         row={seats.G}
         color={green}
         rowKey="G"
         startingOffset={75}
-        topOffset={192}
+        topOffset={227}
         jumps={[{ index: 0, distance: 22 }]}
       />
       <Row
@@ -67,7 +67,7 @@ export const Theatre3 = ({ seats }) => {
         color={green}
         rowKey="H"
         startingOffset={144}
-        topOffset={224}
+        topOffset={264}
       />
     </Wrapper>
   );

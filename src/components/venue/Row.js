@@ -19,11 +19,11 @@ export const Row = ({
   // removing "3" instances which mark row seperation
   row = row.filter((seat) => seat != 3);
 
-  const apex = row.length / 2;
+  const apex = (row.length / 2) - 0.5;
   const curveOffsets = curve
     ? row.map((_, index) => {
         const diff = Math.abs(apex - index);
-        return diff ** 1.6;
+        return diff ** 1.8;
       })
     : Array(row.length).fill(0);
 

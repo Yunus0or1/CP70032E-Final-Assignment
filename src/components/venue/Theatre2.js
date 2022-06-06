@@ -5,11 +5,11 @@ import { Row } from "./Row";
 import { orange, blue, green } from "./colors";
 
 export const Theatre2 = ({ seats }) => {
-  const screenOffset = 20;
+  const screenOffset = 33;
 
   return (
     <Wrapper
-      wrapperHeight={265}
+      wrapperHeight={348}
       wrapperWidth={662}
       screenTopOffset={-100}
       screenLeftOffset={210}
@@ -27,7 +27,7 @@ export const Theatre2 = ({ seats }) => {
         color={orange}
         rowKey="B"
         startingOffset={64}
-        topOffset={32 + screenOffset}
+        topOffset={42 + screenOffset}
         curve={true}
       />
       <Row
@@ -35,7 +35,7 @@ export const Theatre2 = ({ seats }) => {
         color={orange}
         rowKey="C"
         startingOffset={64}
-        topOffset={64 + screenOffset}
+        topOffset={84 + screenOffset}
         curve={true}
       />
       <Row
@@ -43,7 +43,7 @@ export const Theatre2 = ({ seats }) => {
         color={blue}
         rowKey="D"
         startingOffset={32}
-        topOffset={96 + screenOffset}
+        topOffset={126 + screenOffset}
         curve={true}
       />
       <Row
@@ -51,30 +51,31 @@ export const Theatre2 = ({ seats }) => {
         color={blue}
         rowKey="E"
         startingOffset={32}
-        topOffset={128 + screenOffset}
+        topOffset={168 + screenOffset}
         curve={true}
       />
       <Row
         row={seats.F}
         color={blue}
         rowKey="F"
-        topOffset={160 + screenOffset}
+        topOffset={210 + screenOffset}
         curve={true}
       />
       <Row
         row={seats.G}
         color={green}
         rowKey="G"
-        topOffset={192 + screenOffset}
+        topOffset={252 + screenOffset}
         curve={true}
       />
       <Row
-        row={seats.H}
+        row={[...seats.H, 0]}
         color={green}
         rowKey="H"
-        topOffset={224 + screenOffset}
+        topOffset={294 + screenOffset}
         curve={true}
-        lockedSeats={[seats.H.length - 1]}
+        // would be minute one to identify last one but we are adding extra in row
+        lockedSeats={[seats.H.length]}
       />
     </Wrapper>
   );
