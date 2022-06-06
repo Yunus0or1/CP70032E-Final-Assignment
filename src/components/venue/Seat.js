@@ -8,7 +8,7 @@ import {
 
 const seatSize = 22;
 
-export const Seat = ({ rowKey, index, available, color }) => {
+export const Seat = ({ rowKey, index, actualIndex, available, color }) => {
   const dispatch = useDispatch();
   const seats = useSelector(selectSeatList);
 
@@ -24,8 +24,8 @@ export const Seat = ({ rowKey, index, available, color }) => {
 
     if (available)
       selected
-        ? dispatch(removeSeat({ rowKey, index }))
-        : dispatch(addSeat({ rowKey, index }));
+        ? dispatch(removeSeat({ rowKey, index, actualIndex }))
+        : dispatch(addSeat({ rowKey, index, actualIndex }));
   };
 
   return (

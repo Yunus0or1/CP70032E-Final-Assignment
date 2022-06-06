@@ -56,17 +56,22 @@ export const bookClientSlice = createSlice({
       state.event = action.payload;
     },
     addSeat: (state, action) => {
-      const { rowKey, index } = action.payload;
+      const { rowKey, index, actualIndex } = action.payload;
 
       const newSeats = Object.assign(state.seatList);
-      newSeats.push({ rowKey, index });
+      newSeats.push({ rowKey, index, actualIndex });
       state.seatList = newSeats;
     },
     removeSeat: (state, action) => {
-      const { rowKey, index } = action.payload;
+      const { rowKey, index, actualIndex } = action.payload;
 
       const newSeats = state.seatList.filter(
-        (e) => !(e.rowKey === rowKey && e.index === index)
+        (e) =>
+          !(
+            e.rowKey === rowKey &&
+            e.index === index &&
+            e.actualIndex === actualIndex
+          )
       );
 
       state.seatList = newSeats;

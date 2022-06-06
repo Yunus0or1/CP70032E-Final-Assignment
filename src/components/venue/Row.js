@@ -4,6 +4,13 @@ import { Seat } from "./Seat";
 
 const multiplier = 32;
 
+const occurrencesOf = (number, numbers) =>
+  numbers.reduce(
+    (counter, currentNumber) =>
+      number === currentNumber ? counter + 1 : counter,
+    0
+  );
+
 export const Row = ({
   row,
   rowKey,
@@ -17,17 +24,40 @@ export const Row = ({
   const labelSeperation = 20;
 
   // removing "3" instances which mark row seperation
-  row = row.filter((seat) => seat != 3);
+  const displayRow = row.filter((seat) => seat != 3);
 
-  const apex = (row.length / 2) - 0.5;
+  const apex = displayRow.length / 2 - 0.5;
   const curveOffsets = curve
-    ? row.map((_, index) => {
+    ? displayRow.map((_, index) => {
         const diff = Math.abs(apex - index);
         return diff ** 1.8;
       })
-    : Array(row.length).fill(0);
+    : Array(displayRow.length).fill(0);
 
-  const calculatedRow = row.map((value, index) => {
+  const allIndexes = row.map((value, index) => {
+    const occ = occurrencesOf(3, row.slice(0, index));
+    return {
+      value: value,
+      actualIndex: index,
+      fakeIndex: index - occ,
+    };
+  });
+
+  const indexes = [];
+  [...allIndexes].reverse().forEach((objA) => {
+    let valueExists = false;
+    indexes.forEach((objB) => {
+      if (objB.fakeIndex == objA.fakeIndex) valueExists = true;
+    });
+
+    if (!valueExists) indexes.push(objA);
+  });
+  const finalIndexes = [...indexes].reverse();
+
+  const calculatedRow = finalIndexes.map((obj) => {
+    const { value, actualIndex, fakeIndex } = obj;
+    const index = fakeIndex;
+
     // eslint-disable-next-line
     const available = value == "1" ? true : false;
     const locked = lockedSeats.includes(index);
@@ -49,6 +79,7 @@ export const Row = ({
         <Seat
           rowKey={rowKey}
           index={index}
+          actualIndex={actualIndex}
           available={available && !locked}
           color={locked ? "" : color}
         />
