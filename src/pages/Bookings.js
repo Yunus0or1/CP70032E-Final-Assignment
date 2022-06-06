@@ -208,6 +208,7 @@ export const Bookings = () => {
                         : "Phone/Counter Booking"}
                     </Typography>
                     <Typography>Status: {result.bookingStatus}</Typography>
+                    <Typography>Reference: <span style={{fontFamily: "monospace"}}>{result.id.slice(-6)}</span></Typography>
                   </Box>
                   <Divider />
                   <Box>
