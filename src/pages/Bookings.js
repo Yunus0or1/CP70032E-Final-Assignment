@@ -95,6 +95,7 @@ export const Bookings = () => {
       createdTime: booking.createdTime,
       bookingStatus: newStatus,
       totalCost: booking.totalCost,
+      customerId: booking.customerId,
       customerName: booking.customerName,
       snacksList: booking.snacksList,
       seatList: booking.seatList,

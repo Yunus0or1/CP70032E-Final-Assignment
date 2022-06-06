@@ -6,6 +6,7 @@ export async function bookClient({
   createdTime,
   bookingStatus,
   totalCost,
+  customerId = null,
   customerName,
   snacksList,
   seatList,
@@ -18,7 +19,7 @@ export async function bookClient({
     bookingStatus,
     totalCost,
     customerName,
-    customerId: null,
+    customerId,
     snacksList: snacksList,
     seatList: seatList,
   };
