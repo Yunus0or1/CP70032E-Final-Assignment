@@ -1,4 +1,4 @@
-# CP70032E A3
+# CP70032E-A3
 
 - This is a project assignment on CP70032E-MSc Software Engineering.
 - Read the PDF for all the instructions
