@@ -1,0 +1,362 @@
+{
+	"info": {
+		"_postman_id": "f96a83ba-8f21-4d0e-b57f-dda56a34235b",
+		"name": "A3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11940923"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"routeKey\": \"USER_LOGIN\",\r\n    \"email\": \"adminM@movie.com\",\r\n    \"password\": \"123123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://xiear1qh26.execute-api.eu-west-2.amazonaws.com/default/CP70032E-movie",
+					"protocol": "https",
+					"host": [
+						"xiear1qh26",
+						"execute-api",
+						"eu-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"default",
+						"CP70032E-movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"routeKey\": \"USER_REGISTER\",\r\n    \"email\": \"newuser@gmail.com\",\r\n    \"password\": \"123123\",\r\n    \"firstName\": \"New\", \r\n    \"lastName\": \"New L\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://xiear1qh26.execute-api.eu-west-2.amazonaws.com/default/CP70032E-movie",
+					"protocol": "https",
+					"host": [
+						"xiear1qh26",
+						"execute-api",
+						"eu-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"default",
+						"CP70032E-movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"routeKey\": \"SET_EVENT\",\r\n    \"eventId\": null, \r\n    \"createdTime\": null, \r\n    \"eventName\": \"Event 1\",\r\n    \"movieName\": \"Spider Man 1\",\r\n    \"eventTime\": \"2022-06-30T14:57:00.000Z\",\r\n    \"eventDuration\": \"60\",\r\n    \"customerId\": \"1\",\r\n    \"customerName\": \"GG\",\r\n    \"eventPrice\": 80,\r\n    \"venueList\": [{\r\n            \"id\": \"0\",\r\n            \"title\": \"Theater 1\",\r\n            \"identifierTitle\": \"theater1\",\r\n            \"location\": \"Ealing Broadway 1\",\r\n            \"totalSeats\": 40,\r\n            \"seats\": {\r\n                \"A\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],\r\n                \"B\": [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0],\r\n                \"C\": [0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1],\r\n                \"D\": [0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],\r\n                \"E\": [1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],\r\n                \"F\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],\r\n                \"G\": [0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1],\r\n                \"H\": [0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],\r\n                \"J\": [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0],\r\n                \"K\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\r\n                \"L\": [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1],\r\n                \"M\": [0, 0, 0, 1, 1, 1, 0, 0, 0]\r\n            }\r\n        }]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://xiear1qh26.execute-api.eu-west-2.amazonaws.com/default/CP70032E-movie",
+					"protocol": "https",
+					"host": [
+						"xiear1qh26",
+						"execute-api",
+						"eu-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"default",
+						"CP70032E-movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"routeKey\": \"SET_EVENT\",\r\n    \"eventId\": \"EVENT_b33544c4_b87b_4524_afb6_1203202e1cb3\", \r\n    \"createdTime\": 1654281928408, \r\n    \"eventName\": \"Event 1\",\r\n    \"movieName\": \"Captain Uk 2\",\r\n    \"eventTime\": \"2022-06-30T14:57:00.000Z\",\r\n    \"eventDuration\": \"60\",\r\n    \"venueList\": [{\r\n            \"id\": \"0\",\r\n            \"title\": \"Theater 1\",\r\n            \"identifierTitle\": \"theater1\",\r\n            \"location\": \"Ealing Broadway 1\",\r\n            \"totalSeats\": 40,\r\n            \"seats\": {\r\n                \"A\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],\r\n                \"B\": [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0],\r\n                \"C\": [0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1],\r\n                \"D\": [0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],\r\n                \"E\": [1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0],\r\n                \"F\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],\r\n                \"G\": [0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1],\r\n                \"H\": [0, 0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],\r\n                \"J\": [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0],\r\n                \"K\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],\r\n                \"L\": [0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1],\r\n                \"M\": [0, 0, 0, 1, 1, 1, 0, 0, 0]\r\n            }\r\n        }]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://xiear1qh26.execute-api.eu-west-2.amazonaws.com/default/CP70032E-movie",
+					"protocol": "https",
+					"host": [
+						"xiear1qh26",
+						"execute-api",
+						"eu-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"default",
+						"CP70032E-movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"routeKey\": \"GET_EVENT_LIST\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://xiear1qh26.execute-api.eu-west-2.amazonaws.com/default/CP70032E-movie",
+					"protocol": "https",
+					"host": [
+						"xiear1qh26",
+						"execute-api",
+						"eu-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"default",
+						"CP70032E-movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Theater",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"routeKey\": \"GET_THEATER_LIST\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://xiear1qh26.execute-api.eu-west-2.amazonaws.com/default/CP70032E-movie",
+					"protocol": "https",
+					"host": [
+						"xiear1qh26",
+						"execute-api",
+						"eu-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"default",
+						"CP70032E-movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Seat Plan",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"routeKey\":\"CHECK_SEAT_PLAN\",\r\n   \"eventId\":\"EVENT_59a1436f_638f_4db6_8b7b_480c89d562ee\",\r\n   \"createdTime\":1653651896910,\r\n   \"bookedSeat\":[\r\n      {\r\n         \"rowKey\":\"G\",\r\n         \"index\":1\r\n      },\r\n      {\r\n         \"rowKey\":\"H\",\r\n         \"index\":2\r\n      },\r\n      {\r\n         \"rowKey\":\"H\",\r\n         \"index\":3\r\n      },\r\n      {\r\n         \"rowKey\":\"G\",\r\n         \"index\":3\r\n      },\r\n      {\r\n         \"rowKey\":\"G\",\r\n         \"index\":2\r\n      },\r\n      {\r\n         \"rowKey\":\"H\",\r\n         \"index\":8\r\n      },\r\n      {\r\n         \"rowKey\":\"H\",\r\n         \"index\":10\r\n      }\r\n   ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://xiear1qh26.execute-api.eu-west-2.amazonaws.com/default/CP70032E-movie",
+					"protocol": "https",
+					"host": [
+						"xiear1qh26",
+						"execute-api",
+						"eu-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"default",
+						"CP70032E-movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Make Booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"routeKey\":\"SET_BOOKING\",\r\n   \"eventId\":\"EVENT_59a1436f_638f_4db6_8b7b_480c89d562ee\",\r\n   \"bookingId\": null,\r\n   \"createdTime\":1653651896910,\r\n   \"bookingStatus\":\"CONFIRMED\",\r\n   \"totalCost\": 80,\r\n   \"snacksList\":{\r\n      \r\n   },\r\n   \"seatList\":[\r\n      {\r\n         \"rowKey\":\"G\",\r\n         \"index\":1\r\n      },\r\n      {\r\n         \"rowKey\":\"H\",\r\n         \"index\":2\r\n      },\r\n      {\r\n         \"rowKey\":\"H\",\r\n         \"index\":3\r\n      },\r\n      {\r\n         \"rowKey\":\"G\",\r\n         \"index\":3\r\n      },\r\n      {\r\n         \"rowKey\":\"G\",\r\n         \"index\":2\r\n      },\r\n      {\r\n         \"rowKey\":\"H\",\r\n         \"index\":8\r\n      },\r\n      {\r\n         \"rowKey\":\"H\",\r\n         \"index\":10\r\n      }\r\n   ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://xiear1qh26.execute-api.eu-west-2.amazonaws.com/default/CP70032E-movie",
+					"protocol": "https",
+					"host": [
+						"xiear1qh26",
+						"execute-api",
+						"eu-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"default",
+						"CP70032E-movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancel Booking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"routeKey\":\"SET_BOOKING\",\r\n   \"eventId\":\"EVENT_59a1436f_638f_4db6_8b7b_480c89d562ee\",\r\n   \"bookingId\": \"BOOKING_4d4f276c_606f_4ae4_9a70_a4793df04b53\",\r\n   \"bookingStatus\":\"CACNELLED\",\r\n   \"createdTime\":1653651896910,\r\n   \"snacksList\":{\r\n      \r\n   },\r\n   \"seatList\":[\r\n      {\r\n         \"rowKey\":\"G\",\r\n         \"index\":1\r\n      },\r\n      {\r\n         \"rowKey\":\"H\",\r\n         \"index\":2\r\n      },\r\n      {\r\n         \"rowKey\":\"H\",\r\n         \"index\":3\r\n      },\r\n      {\r\n         \"rowKey\":\"G\",\r\n         \"index\":3\r\n      },\r\n      {\r\n         \"rowKey\":\"G\",\r\n         \"index\":2\r\n      },\r\n      {\r\n         \"rowKey\":\"H\",\r\n         \"index\":8\r\n      },\r\n      {\r\n         \"rowKey\":\"H\",\r\n         \"index\":10\r\n      }\r\n   ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://xiear1qh26.execute-api.eu-west-2.amazonaws.com/default/CP70032E-movie",
+					"protocol": "https",
+					"host": [
+						"xiear1qh26",
+						"execute-api",
+						"eu-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"default",
+						"CP70032E-movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Event",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"routeKey\":\"DELETE_EVENT\",\r\n   \"eventId\": \"EVENT_0f701eff_4fce_4690_8f26_28de79806a1b\",\r\n   \"createdTime\": 1654287721919\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://xiear1qh26.execute-api.eu-west-2.amazonaws.com/default/CP70032E-movie",
+					"protocol": "https",
+					"host": [
+						"xiear1qh26",
+						"execute-api",
+						"eu-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"default",
+						"CP70032E-movie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Booking List",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"routeKey\": \"GET_BOOKING_LIST\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://xiear1qh26.execute-api.eu-west-2.amazonaws.com/default/CP70032E-movie",
+					"protocol": "https",
+					"host": [
+						"xiear1qh26",
+						"execute-api",
+						"eu-west-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"default",
+						"CP70032E-movie"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
